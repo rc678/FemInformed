@@ -1,54 +1,74 @@
-var education = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+stem%2C+fields&api-key=25320373fddc49b89342139d9170eb07";
-var violence = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+domestic%2C+violence&api-key=25320373fddc49b89342139d9170eb07";
-var workplace =  "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+workplace&api-key=25320373fddc49b89342139d9170eb07";
-var reproduction = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+politics&api-key=25320373fddc49b89342139d9170eb07";
-var media = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+media&api-key=25320373fddc49b89342139d9170eb07";
+var education = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+stem%2C+fields&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var violence = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+domestic%2C+violence&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var workplace =  "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+workplace&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var reproduction = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+abortion&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var media = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+media%2Csexism&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
 
-var apiCalls = [education, violence, workplace, reproduction, media];
-var articles = [];
+var topicList = [education, violence, workplace, reproduction, media]; // Array of URLs with necessary API parameters
+var maxArticles = 10; // Number of articles to display in each topic
+var currTopicIndex = 0; // Index of current topic that is being parsed
 
 /*calls GUI and parsing files once static pages are loaded*/
 $(document).ready(function(){
+    if (topicList.length > 0) {
+        // $("#ajaxIndicator").modal('show'); // Show loading modal. uncomment to enable loading modal
 
-    var myVar; 
-    for(var i = 0; i < 1; i++)
-    {
-        $.ajax({
-            url: apiCalls[i],
-            method: 'GET',
-            dataType:'JSON',
-            async: false,
-            success: function(res)
-            {
-                myVar = res; 
-            }
-        }).fail(function(err) {
-            throw err;
-        });
-        
-        //console.log(myVar);
-        articles.push(myVar);
+        getArticles(currTopicIndex);
+    } else {
+        console.log("No topics were defined!");
     }
-    
-    console.log(articles);
-    
-    displayArticles();
-    
 });
 
-function displayArticles()
-{
-    for(var i = 0; i < articles.length; i++)
-    {
-        for(var j = 0; j < 10; j++)
+// Retrieves a list of articles about the specified topic from NYTimes API.
+function getArticles(topicIndex) {
+    $.ajax({
+        url: topicList[topicIndex],
+        method: 'GET',
+        dataType:'JSON',
+        async: false,
+        success: function(res)
         {
-            var headline = articles[i].response.docs[j].headline.main;
-            $('#education').append('<p>' + headline + '</p>' + '<br>');
-        }
+            displayArticles(topicIndex, res);
 
-    }
-   
+            // If there are more topics then get those articles
+            if (currTopicIndex < topicList.length) {
+                currTopicIndex++;
+
+                setTimeout(function() {
+                    getArticles(currTopicIndex);
+                }, 1000);
+            }
+        },
+        error: function(err) {
+            throw err;
+        }
+    });
 }
 
+// Parse API response to display articles on page.
+function displayArticles(topicIndex, json)
+{
+    for(var j = 0; j < maxArticles; j++)
+    {
+        var headline = json.response.docs[j].headline.main;
+        var url = json.response.docs[j].web_url;
 
+        if (topicIndex == 0) {
+            $('#edu').append('<a href="' + url + '">' + headline + '</a>' + '<br>');
+        }
+        else if (topicIndex == 1) { 
+            $('#viol').append('<a href="' + url + '">' + headline + '</a>' + '<br>');
+        }
+        else if (topicIndex == 2) { 
+            $('#work').append('<a href="' + url + '">' + headline + '</a>' + '<br>');
+        }
+        else if (topicIndex == 3) { 
+            $('#repr').append('<a href="' + url + '">' + headline + '</a>' + '<br>');
+        }
+        else if (topicIndex == 4) { 
+            $('#med').append('<a href="' + url + '">' + headline + '</a>' + '<br>');
 
+            //$("#ajaxIndicator").modal('hide'); // Hide modal. uncomment if using loading modal
+        }
+    }
+}

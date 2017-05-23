@@ -1,0 +1,32 @@
+.content{
+    padding : 2.5%; 
+    float: left;
+    text-align: left; 
+    font-size: 1.5em;
+}
+
+h1{
+    font-family: Lucida Sans Typewriter;
+    text-align: left;
+    text-decoration: underline;
+}
+
+a:visited{
+    border:none;
+    font-style:normal;
+    color:black;
+}
+
+#nav-logo{ 
+    float: left;
+    position: relative;
+    top: -30px;
+}
+
+#nav-logo svg:hover g{
+    fill: purple;
+}
+
+#landing{
+    font-size: 4.5em; 
+}
