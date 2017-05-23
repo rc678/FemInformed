@@ -28,5 +28,28 @@ a:visited{
 }
 
 #landing{
-    font-size: 4.5em; 
+    font-size: 5.5em; 
+}
+
+p{
+    font-size: 1.5em;
+}
+
+#intro{
+    padding-top: 12%;
+}
+
+.navbar {
+    background-color: #CD96CD;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
+    font: bold;
+    font-size: 1.0em;
+    font-family: Lucida Sans Typewriter;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: purple;
 }
