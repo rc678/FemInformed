@@ -1,8 +1,8 @@
-var education = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+stem%2C+fields&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var violence = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+domestic%2C+violence&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var workplace =  "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+workplace&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var reproduction = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+abortion&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var media = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+media%2Csexism&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var education = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+stem%2C+fields&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var violence = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+domestic%2C+violence&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var workplace =  "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+workplace&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var reproduction = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+abortion&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+var media = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+media%2Csexism&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
 
 var topicList = [education, violence, workplace, reproduction, media]; // Array of URLs with necessary API parameters
 var maxArticles = 10; // Number of articles to display in each topic
