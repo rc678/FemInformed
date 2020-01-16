@@ -1,15 +1,10 @@
 {
-    "name": "startbootstrap-scrolling-nav",
-    "title": "Scrolling Nav",
-    "version": "3.3.7",
-    "homepage": "http://startbootstrap.com/template-overviews/scrolling-nav",
-    "author": "Start Bootstrap",
-    "license": {
-        "type": "MIT",
-        "url": "https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/BlackrockDigital/startbootstrap-scrolling-nav.git"
-    }
+  "name": "feminformed",
+  "title": "FemInformed",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git"
+  },
+  "main": "index.js"
 }

@@ -1,12 +1,14 @@
-var education = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+stem%2C+fields&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var violence = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+domestic%2C+violence&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var workplace =  "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+workplace&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var reproduction = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+abortion&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
-var media = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+media%2Csexism&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+const API_KEY = process.env.API_KEY;
 
-var topicList = [education, violence, workplace, reproduction, media]; // Array of URLs with necessary API parameters
-var maxArticles = 10; // Number of articles to display in each topic
-var currTopicIndex = 0; // Index of current topic that is being parsed
+const education = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+stem%2C+fields&sort=newest&api-key={API_KEY}";
+const violence = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+domestic%2C+violence&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+const workplace =  "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+workplace&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+const reproduction = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+abortion&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+const media = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=women%2C+in%2C+media%2Csexism&sort=newest&api-key=9621e1c0d91e4e05a60c0c7cb41cbf59";
+
+const topicList = [education, violence, workplace, reproduction, media]; // Array of URLs with necessary API parameters
+let maxArticles = 10; // Number of articles to display in each topic
+let currTopicIndex = 0; // Index of current topic that is being parsed
 
 /*calls GUI and parsing files once static pages are loaded*/
 $(document).ready(function(){
@@ -48,10 +50,10 @@ function getArticles(topicIndex) {
 // Parse API response to display articles on page.
 function displayArticles(topicIndex, json)
 {
-    for(var j = 0; j < maxArticles; j++)
+    for(let j = 0; j < maxArticles; j++)
     {
-        var headline = json.response.docs[j].headline.main;
-        var url = json.response.docs[j].web_url;
+        let headline = json.response.docs[j].headline.main;
+        let url = json.response.docs[j].web_url;
 
         if (topicIndex == 0) {
             $('#edu').append('<a href="' + url + '">' + headline + '</a>' + '<br>');
